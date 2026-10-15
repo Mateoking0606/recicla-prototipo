@@ -1,6 +1,6 @@
  "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 const materiales = [
   "Todos",
@@ -13,7 +13,7 @@ const materiales = [
   "Otros",
 ];
 
-export default function RecicladoresPage() {
+function ContenidoRecicladores() {
   const searchParams = useSearchParams();
   const [recicladores, setRecicladores] = useState<any[]>([]);
   const [materialSeleccionado, setMaterialSeleccionado] =
@@ -290,5 +290,12 @@ String(reciclador.materiales_aceptados || "")
         )}
       </section>
     </main>
+  );
+}
+export default function RecicladoresPage() {
+  return (
+    <Suspense fallback={<p style={{ padding: "40px" }}>Cargando recicladores...</p>}>
+      <ContenidoRecicladores />
+    </Suspense>
   );
 }
