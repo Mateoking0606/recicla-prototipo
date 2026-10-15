@@ -1,7 +1,7 @@
  "use client";
 
 import { useEffect, useState } from "react";
-
+import { useSearchParams } from "next/navigation";
 const materiales = [
   "Todos",
   "PET",
@@ -14,9 +14,17 @@ const materiales = [
 ];
 
 export default function RecicladoresPage() {
+  const searchParams = useSearchParams();
   const [recicladores, setRecicladores] = useState<any[]>([]);
   const [materialSeleccionado, setMaterialSeleccionado] =
     useState("Todos");
+    useEffect(() => {
+  const material = searchParams.get("material");
+
+  if (material && materiales.includes(material)) {
+    setMaterialSeleccionado(material);
+  }
+}, [searchParams]);
 
     useEffect(() => {
   async function cargarRecicladores() {
@@ -59,6 +67,18 @@ String(reciclador.materiales_aceptados || "")
           margin: "0 auto",
         }}
       >
+        <a
+  href="/residuos"
+  style={{
+    display: "inline-block",
+    marginBottom: "20px",
+    color: "#16803c",
+    fontWeight: "700",
+    textDecoration: "none",
+  }}
+>
+  ← Volver al catálogo
+</a>
         <p
           style={{
             color: "#16803c",
