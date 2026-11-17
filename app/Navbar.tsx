@@ -1,4 +1,4 @@
- 
+
 "use client";
 
 import Link from "next/link";
@@ -7,12 +7,9 @@ import { useState } from "react";
 
 const enlaces = [
   { href: "/", nombre: "Inicio" },
-  { href: "/plastico", nombre: "Plásticos" },
   { href: "/residuos", nombre: "Catálogo de residuos" },
-  { href: "/identificar", nombre: "Identificar" },
   { href: "/recicladores", nombre: "Recicladores" },
   { href: "/mapa", nombre: "🗺️ ReCicla Maps" },
-  { href: "/funciones", nombre: "Funciones" },
   { href: "/chatbot", nombre: "Asistente IA" },
 ];
 
